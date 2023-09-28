@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence", "C:\User
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Security", "C:\Users\RamazanOsman\Downloads\nArchitecture-master\nArchitecture-master\src\corePackages\Core.Security\Core.Security.csproj", "{145C29C7-50E5-4946-90E7-15E565986949}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{22AF2F7B-D4A4-44D7-8271-572D7435589C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
