@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Dtos;
+using Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Rules;
 using Kodlama.io.Devs.Application.Services.Repositories;
 using Kodlama.io.Devs.Domain.Entities;
 using MediatR;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguage.Commands.CreateProgrammingLanguage
+namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Commands.CreateProgrammingLanguage
 {
 	public class CreateProgrammingLanguageCommand:IRequest<CreatedProgrammingLanguageDto>
 	{
@@ -18,16 +19,20 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguage.Commands.Crea
 		{
 			private readonly IProgrammingLanguageRepository _programmingLanguageRepository;
 			private readonly IMapper _mapper;
+			private readonly ProgrammingLanguageBusinessRules _programmingLanguageBusinessRules;
 
-			public CreateProgrammingLanguageHandler(IProgrammingLanguageRepository programmingLanguageRepository, IMapper mapper)
+			public CreateProgrammingLanguageHandler(IProgrammingLanguageRepository programmingLanguageRepository, IMapper mapper,ProgrammingLanguageBusinessRules programmingLanguageBusinessRules)
 			{
 				_programmingLanguageRepository = programmingLanguageRepository;
 				_mapper = mapper;
+				_programmingLanguageBusinessRules = programmingLanguageBusinessRules;
 			}
 
 			public async Task<CreatedProgrammingLanguageDto> Handle(CreateProgrammingLanguageCommand request, CancellationToken cancellationToken)
 			{
-				var mappedProgrammingLanguage = _mapper.Map<Kodlama.io.Devs.Domain.Entities.ProgrammingLanguage>(request);
+				await _programmingLanguageBusinessRules.ProgrammingLanguageNameCanNotBeDuplicatedWhenInserted(request.Name);
+
+				var mappedProgrammingLanguage = _mapper.Map<ProgrammingLanguage>(request);
 				var programmingLanguage =  await _programmingLanguageRepository.AddAsync(mappedProgrammingLanguage);
 				CreatedProgrammingLanguageDto createdProgrammingLanguageDto = _mapper.Map<CreatedProgrammingLanguageDto>(programmingLanguage);
 				return createdProgrammingLanguageDto;

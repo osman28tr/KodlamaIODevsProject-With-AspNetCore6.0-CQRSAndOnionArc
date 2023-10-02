@@ -8,11 +8,11 @@
 
   <ItemGroup>
     <Folder Include="Features\ProgrammingLanguages\Constants\" />
-    <Folder Include="Features\ProgrammingLanguages\Rules\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.1" />
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
   </ItemGroup>

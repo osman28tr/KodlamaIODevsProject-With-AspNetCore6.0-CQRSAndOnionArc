@@ -30,7 +30,7 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Queries.GetL
 
 			public async Task<ProgrammingLanguageListModel> Handle(GetListProgrammingLanguageQuery request, CancellationToken cancellationToken)
 			{
-				IPaginate<Kodlama.io.Devs.Domain.Entities.ProgrammingLanguage> paginate = await _programmingLanguageRepository.GetListAsync(index: request.PageRequest.Page, size: request.PageRequest.PageSize);
+				IPaginate<ProgrammingLanguage> paginate = await _programmingLanguageRepository.GetListAsync(index: request.PageRequest.Page, size: request.PageRequest.PageSize);
 
 				ProgrammingLanguageListModel programmingLanguageListModel = _mapper.Map<ProgrammingLanguageListModel>(paginate);
 
