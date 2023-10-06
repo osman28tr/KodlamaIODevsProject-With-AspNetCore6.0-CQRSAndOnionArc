@@ -1,4 +1,5 @@
 ﻿using Core.Persistence.Paging;
+using Kodlama.io.Devs.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace Kodlama.io.Devs.Application.Features.ProgrammingLanguages.Models
 {
 	public class ProgrammingLanguageListModel:BasePageableModel
 	{
-        public IList<Kodlama.io.Devs.Domain.Entities.ProgrammingLanguage> Items { get; set; }
+        public IList<ProgrammingLanguage> Items { get; set; }
     }
 }

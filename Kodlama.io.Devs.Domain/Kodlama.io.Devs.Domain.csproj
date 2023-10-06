@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="C:\Users\RamazanOsman\Downloads\nArchitecture-master\nArchitecture-master\src\corePackages\Core.Persistence\Core.Persistence.csproj" />
+    <ProjectReference Include="C:\Users\RamazanOsman\Downloads\nArchitecture-master\nArchitecture-master\src\corePackages\Core.Security\Core.Security.csproj" />
   </ItemGroup>
 
 </Project>

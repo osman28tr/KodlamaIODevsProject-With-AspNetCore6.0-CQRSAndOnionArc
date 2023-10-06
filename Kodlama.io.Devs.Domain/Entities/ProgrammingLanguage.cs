@@ -19,5 +19,6 @@ namespace Kodlama.io.Devs.Domain.Entities
             Id = id;
             Name = name;
         }
+        public ICollection<Technology> Technologies { get; set; }
     }
 }
