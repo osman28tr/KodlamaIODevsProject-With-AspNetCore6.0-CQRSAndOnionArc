@@ -17,8 +17,9 @@ namespace Kodlama.io.Devs.Persistance.Contexts
         public DbSet<Technology> Technologies { get; set; }
 		public DbSet<AppUser> AppUsers { get; set; }
 		public DbSet<User> Users { get; set; }
+        public DbSet<SocialLink> SocialLinks { get; set; }
 
-		public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
+        public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
 		{
 			Configuration = configuration;
 		}
@@ -28,6 +29,14 @@ namespace Kodlama.io.Devs.Persistance.Contexts
 			{
 				a.ToTable("AppUsers");
 				a.Property(p => p.Id).HasColumnName("Id");
+			});
+
+			modelBuilder.Entity<SocialLink>(a =>
+			{
+				a.ToTable("SocialLinks").HasKey(p => p.Id);
+				a.Property(p => p.Id).HasColumnName("Id");
+				a.Property(p => p.Title).HasColumnName("Title");
+				a.Property(p => p.Link).HasColumnName("Link");
 			});
 
 			modelBuilder.Entity<ProgrammingLanguage>(a =>
