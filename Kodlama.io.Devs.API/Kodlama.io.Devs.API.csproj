@@ -9,6 +9,8 @@
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.1.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.21" />
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -24,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Kodlama.io.Devs.Application\Kodlama.io.Devs.Application.csproj" />
     <ProjectReference Include="..\Kodlama.io.Devs.Persistance\Kodlama.io.Devs.Persistance.csproj" />
+    <ProjectReference Include="C:\Users\RamazanOsman\Downloads\nArchitecture-master\nArchitecture-master\src\corePackages\Core.Security\Core.Security.csproj" />
   </ItemGroup>
 
 </Project>
