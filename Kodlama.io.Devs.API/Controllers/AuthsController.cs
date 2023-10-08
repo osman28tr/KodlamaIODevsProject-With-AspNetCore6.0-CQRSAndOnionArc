@@ -1,6 +1,8 @@
 ﻿using Core.Security.Dtos;
 using Core.Security.Entities;
+using Core.Security.JWT;
 using Kodlama.io.Devs.Application.Features.Auths.Commands.CreateUser;
+using Kodlama.io.Devs.Application.Features.Auths.Commands.LoginUser;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,14 +24,22 @@ namespace Kodlama.io.Devs.API.Controllers
 			CreateUserCommand createUserCommand = new() { UserForRegisterDto = userForRegisterDto, IpAddress = GetIpAddress() };
 			var result = await _mediator.Send(createUserCommand);
 
-			SetRefreshTokenToCookie(result.RefreshToken);
+			SetAccessTokenToCookie(result.AccessToken);
 
 			return Ok(result.AccessToken);
 		}
-		private void SetRefreshTokenToCookie(RefreshToken refreshToken)
+		[HttpPost("Login")]
+		public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
+		{
+			LoginUserCommand loginUserCommand = new() { UserForLoginDto = userForLoginDto, IpAddress = GetIpAddress() };
+			var result = await _mediator.Send(loginUserCommand);
+			SetAccessTokenToCookie(result.AccessToken);
+			return Ok(result.AccessToken);
+		}
+		private void SetAccessTokenToCookie(AccessToken accessToken)
 		{
 			CookieOptions cookieOptions = new() { HttpOnly = true, Expires = DateTime.Now.AddDays(1) };
-			Response.Cookies.Append("refreshToken", refreshToken.Token, cookieOptions);
+			Response.Cookies.Append("accessToken", accessToken.Token, cookieOptions);
 		}
 		private string? GetIpAddress()
 		{
