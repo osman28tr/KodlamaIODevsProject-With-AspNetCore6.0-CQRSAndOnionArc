@@ -1,4 +1,5 @@
 ﻿using Core.Application.Requests;
+using Kodlama.io.Devs.Application.Features.Technologies.Commands.CreateTechnology;
 using Kodlama.io.Devs.Application.Features.Technologies.Queries.GetListTechnology;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +21,12 @@ namespace Kodlama.io.Devs.API.Controllers
 		{
 			GetListTechnologyQuery getListTechnologyQuery = new GetListTechnologyQuery { PageRequest = pageRequest };
 			var result = await _mediator.Send(getListTechnologyQuery);
+			return Ok(result);
+		}
+		[HttpPost]
+		public async Task<IActionResult> Add([FromBody] CreateTechnologyCommand createTechnologyCommand)
+		{
+			var result = await _mediator.Send(createTechnologyCommand);
 			return Ok(result);
 		}
 	}
